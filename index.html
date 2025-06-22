@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legacy GTA Boost - Coming Soon</title>
+    <title>Enhanced GTA Boost - Legacy Coming Soon</title>
     <style>
         * {
             margin: 0;
@@ -175,6 +175,24 @@
             font-weight: bold;
         }
 
+        .click-hint {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #ffd700;
+            font-weight: bold;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .package:hover .click-hint {
+            opacity: 1;
+            background: rgba(255, 215, 0, 0.2);
+        }
+
         .contact-info {
             text-align: center;
             margin-top: 80px;
@@ -208,36 +226,20 @@
             text-transform: uppercase;
         }
 
-        .click-hint {
-            margin-top: 20px;
-            padding: 10px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid #ffd700;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: #ffd700;
-            font-weight: bold;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .package:hover .click-hint {
-            opacity: 1;
-            background: rgba(255, 215, 0, 0.2);
-        }
+        @media (max-width: 768px) {
             .logo {
                 font-size: 2.5rem;
             }
-            
+
             .packages {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
+
             .package.premium {
                 transform: none;
             }
-            
+
             .container {
                 padding: 15px;
             }
@@ -282,7 +284,7 @@
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    
+
     <div class="container">
         <header class="header">
             <h1 class="logo">ENHANCED</h1>
@@ -382,7 +384,7 @@
             package.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-15px) scale(1.02)';
             });
-            
+
             package.addEventListener('mouseleave', function() {
                 if (this.classList.contains('premium')) {
                     this.style.transform = 'translateY(0) scale(1.05)';
