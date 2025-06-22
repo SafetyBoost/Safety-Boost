@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy GTA Boost - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #ffd700);
+            border-radius: 2px;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #ffd700);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .package {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .package::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #ff6b35, #ffd700, #32cd32, #1e90ff);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .package:hover::before {
+            opacity: 1;
+        }
+
+        .package:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .package.premium {
+            background: linear-gradient(145deg, #2d1b69, #3d2b79);
+            transform: scale(1.05);
+        }
+
+        .package.premium::before {
+            background: linear-gradient(135deg, #ffd700, #ff6b35, #ff1493, #9370db);
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .package-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-highlight {
+            color: #32cd32;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #32cd32, #00ff00);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .click-hint {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #ffd700;
+            font-weight: bold;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .package:hover .click-hint {
+            opacity: 1;
+            background: rgba(255, 215, 0, 0.2);
+        }
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .packages {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .package.premium {
+                transform: none;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">ENHANCED</h1>
+            <p class="subtitle">GTA Enhanced PC Account Boosting</p>
+            <div class="platform-badge">PC Enhanced Edition</div>
+            <div class="coming-soon">Legacy Coming Soon</div>
+        </header>
+
+        <div class="packages">
+            <div class="package" onclick="redirectToDiscord()">
+                <div class="package-price">£1.25</div>
+                <h3 class="package-title">Starter Pack</h3>
+                <ul class="package-features">
+                    <li><span class="feature-highlight">1x</span> Modded Outfit</li>
+                    <li><span class="feature-highlight">£5M</span> In-Game Cash</li>
+                    <li>Fast Delivery</li>
+                    <li>Safe & Secure</li>
+                </ul>
+                <div class="click-hint">Click to Order via Discord</div>
+            </div>
+
+            <div class="package" onclick="redirectToDiscord()">
+                <div class="package-price">£2.00</div>
+                <h3 class="package-title">Standard Pack</h3>
+                <ul class="package-features">
+                    <li><span class="feature-highlight">3x</span> Modded Outfits</li>
+                    <li><span class="feature-highlight">£7M</span> In-Game Cash</li>
+                    <li>Premium Support</li>
+                    <li>Fast Delivery</li>
+                    <li>Safe & Secure</li>
+                </ul>
+                <div class="click-hint">Click to Order via Discord</div>
+            </div>
+
+            <div class="package" onclick="redirectToDiscord()">
+                <div class="package-price">£3.00</div>
+                <h3 class="package-title">Deluxe Pack</h3>
+                <ul class="package-features">
+                    <li><span class="feature-highlight">3x</span> Modded Outfits</li>
+                    <li><span class="feature-highlight">1x</span> Modded Car</li>
+                    <li><span class="feature-highlight">£10M</span> In-Game Cash</li>
+                    <li>Priority Support</li>
+                    <li>Fast Delivery</li>
+                    <li>Safe & Secure</li>
+                </ul>
+                <div class="click-hint">Click to Order via Discord</div>
+            </div>
+
+            <div class="package premium" onclick="redirectToDiscord()">
+                <div class="package-price">£5.00</div>
+                <h3 class="package-title">Ultimate Pack</h3>
+                <ul class="package-features">
+                    <li><span class="feature-highlight">Full Garage</span> of Modded Cars</li>
+                    <li><span class="feature-highlight">Max Stats</span> Character Boost</li>
+                    <li><span class="feature-highlight">Custom Level</span> Fast Run</li>
+                    <li><span class="feature-highlight">Colored Outfit Names</span></li>
+                    <li><span class="feature-highlight">5x</span> Modded Outfits</li>
+                    <li><span class="feature-highlight">£15-20M</span> In-Game Cash</li>
+                    <li>VIP Support</li>
+                    <li>Fastest Delivery</li>
+                </ul>
+                <div class="click-hint">Click to Order via Discord</div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>Get Ready for Launch!</h2>
+            <p>Our professional GTA Enhanced PC boosting service is launching soon. Get ready to experience the ultimate in account enhancement with our secure, fast, and reliable service.</p>
+            <br>
+            <p><strong>All services are performed safely and discretely on PC Enhanced Edition only.</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Discord redirect function
+        function redirectToDiscord() {
+            window.open('https://discord.gg/t4GtXF6xMk', '_blank');
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Add hover effects to packages
+        document.querySelectorAll('.package').forEach(package => {
+            package.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            package.addEventListener('mouseleave', function() {
+                if (this.classList.contains('premium')) {
+                    this.style.transform = 'translateY(0) scale(1.05)';
+                } else {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Add some interactive elements
+        document.querySelectorAll('.package-price').forEach(price => {
+            price.addEventListener('click', function() {
+                this.style.animation = 'glow 0.5s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
